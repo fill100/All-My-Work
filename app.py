@@ -57,4 +57,3 @@ with col4:
     st.link_button("🔗 IT Shared Link 2", "https://jvfuturesky.sharepoint.com/:x:/s/jvfs-it/EZGs2aN4k3tEvr46UpUTZkIBfePqsghEiqB7MueqcSXeWA?e=H3VEsB", use_container_width=True)
 
 st.divider()
-st.caption("Last Updated: 2026 | Access restricted to authorized users.")
