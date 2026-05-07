@@ -8,6 +8,7 @@ st.set_page_config(
 )
 
 # ปรับแต่งสไตล์เพิ่มเติมด้วย CSS
+# ปรับแต่งสไตล์เพิ่มเติมด้วย CSS (ลบ unsafe_allow_view_proxy ออก)
 st.markdown("""
     <style>
     .stButton>button {
@@ -21,6 +22,7 @@ st.markdown("""
         transform: scale(1.02);
     }
     </style>
+    """, unsafe_allow_html=True)
     """, unsafe_allow_view_proxy=True, unsafe_allow_html=True)
 
 st.title("📂 JVFS Work Portal")
