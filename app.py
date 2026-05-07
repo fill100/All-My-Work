@@ -1,16 +1,15 @@
 import streamlit as st
 
-# ตั้งค่าหน้าเว็บ
+# 1. การตั้งค่าหน้าเว็บ (ต้องเป็นคำสั่งแรกของ Streamlit)
 st.set_page_config(
     page_title="JVFS Work Portal", 
     page_icon="📂", 
     layout="centered"
 )
 
-# ปรับแต่งสไตล์เพิ่มเติมด้วย CSS
-# ปรับแต่งสไตล์เพิ่มเติมด้วย CSS (ลบ unsafe_allow_view_proxy ออก)
+# 2. ปรับแต่งสไตล์ด้วย CSS (จัดรูปแบบใหม่ให้ป้องกันการ Error)
 st.markdown("""
-    <style>
+<style>
     .stButton>button {
         border-radius: 10px;
         height: 3em;
@@ -21,16 +20,16 @@ st.markdown("""
         color: #007bff;
         transform: scale(1.02);
     }
-    </style>
-    """, unsafe_allow_html=True)
-    """, unsafe_allow_view_proxy=True, unsafe_allow_html=True)
+</style>
+""", unsafe_allow_html=True)
 
+# 3. ส่วนเนื้อหา
 st.title("📂 JVFS Work Portal")
 st.write("ศูนย์รวมลิงก์ระบบงานและเอกสารสำคัญ")
 
 st.divider()
 
-# --- กลุ่มที่ 1: ระบบงานหลัก (DOE & Wesgan) ---
+# --- กลุ่มที่ 1: ระบบงานหลัก ---
 st.subheader("🛠️ Core Systems")
 col1, col2 = st.columns(2)
 
@@ -44,20 +43,18 @@ with col2:
 
 st.divider()
 
-# --- กลุ่มที่ 2: เอกสาร SharePoint (JVFS-IT) ---
+# --- กลุ่มที่ 2: เอกสาร SharePoint ---
 st.subheader("📁 IT Resources & SharePoint")
 
-# รายการเอกสาร SharePoint
 st.link_button("📊 JVFS-Branch InfoList (Excel)", "https://jvfuturesky.sharepoint.com/:x:/r/sites/jvfs-it/_layouts/15/doc2.aspx?sourcedoc={7D495EC0-5278-476D-A12F-17B1ACB60652}&file=JVFS-Branch-InfoList.xlsx&action=default&mobileredirect=true", use_container_width=True)
 
 st.link_button("🖨️ JVFS-Printer Usercode List", "https://jvfuturesky.sharepoint.com/:x:/r/sites/jvfs-it/_layouts/15/doc2.aspx?sourcedoc={4F7823C2-C78E-4C90-81C5-E1C648914A9A}&file=JVFS-PrinterUsercode-List.xlsx&action=default&mobileredirect=true", use_container_width=True)
 
-# ลิงก์ SharePoint อื่นๆ
 col3, col4 = st.columns(2)
 with col3:
-    st.link_button("📝 IT Shared Document 1", "https://jvfuturesky.sharepoint.com/:x:/r/sites/jvfs-it/_layouts/15/doc2.aspx?sourcedoc={a0d07f9a-f12b-4376-9f8e-c4bf13615cd3}&action=edit", use_container_width=True)
+    st.link_button("📝 IT Shared Doc 1", "https://jvfuturesky.sharepoint.com/:x:/r/sites/jvfs-it/_layouts/15/doc2.aspx?sourcedoc={a0d07f9a-f12b-4376-9f8e-c4bf13615cd3}&action=edit", use_container_width=True)
 with col4:
     st.link_button("🔗 IT Shared Link 2", "https://jvfuturesky.sharepoint.com/:x:/s/jvfs-it/EZGs2aN4k3tEvr46UpUTZkIBfePqsghEiqB7MueqcSXeWA?e=H3VEsB", use_container_width=True)
 
 st.divider()
-st.caption(f"Last Updated: 2024 | Access restricted to authorized users.")
+st.caption("Last Updated: 2026 | Access restricted to authorized users.")
