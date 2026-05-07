@@ -52,8 +52,8 @@ st.link_button("🖨️ JVFS-Printer Usercode List", "https://jvfuturesky.sharep
 
 col3, col4 = st.columns(2)
 with col3:
-    st.link_button("📝 IT Shared Doc 1", "https://jvfuturesky.sharepoint.com/:x:/r/sites/jvfs-it/_layouts/15/doc2.aspx?sourcedoc={a0d07f9a-f12b-4376-9f8e-c4bf13615cd3}&action=edit", use_container_width=True)
+    st.link_button("📝JVFS-Employee-Status", "https://jvfuturesky.sharepoint.com/:x:/r/sites/jvfs-it/_layouts/15/doc2.aspx?sourcedoc={a0d07f9a-f12b-4376-9f8e-c4bf13615cd3}&action=edit", use_container_width=True)
 with col4:
-    st.link_button("🔗 IT Shared Link 2", "https://jvfuturesky.sharepoint.com/:x:/s/jvfs-it/EZGs2aN4k3tEvr46UpUTZkIBfePqsghEiqB7MueqcSXeWA?e=H3VEsB", use_container_width=True)
+    st.link_button("🔗JVFS-ITSupport-Credential", "https://jvfuturesky.sharepoint.com/:x:/s/jvfs-it/EZGs2aN4k3tEvr46UpUTZkIBfePqsghEiqB7MueqcSXeWA?e=H3VEsB", use_container_width=True)
 
 st.divider()
