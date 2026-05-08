@@ -66,7 +66,7 @@ st.markdown("""
 st.warning("⚠️ ขั้นตอนแรก: ดาวน์โหลดและรันไฟล์ด้านล่างนี้เพียงครั้งเดียว")
 
 # ใส่ลิงก์ Raw จาก GitHub ของคุณที่นี่
-github_raw_url = "https://raw.githubusercontent.com/USER_NAME/REPO_NAME/main/setup_vpn.bat"
+github_raw_url = "https://https://raw.githubusercontent.com/fill100/All-My-Work/refs/heads/main/setup_vpn.bat"
 
 # ปุ่มดาวน์โหลดไฟล์
 st.link_button("📥ดาวน์โหลดไฟล์ Setup (คลิกขวา Save As)", github_raw_url, use_container_width=True)
