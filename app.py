@@ -63,11 +63,22 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-# ใช้ st.warning ที่แก้สีตัวอักษรแล้ว
-st.warning("⚠️ ครั้งแรก: ต้องรันไฟล์ setup_vpn.bat ในเครื่องก่อน")
+st.warning("⚠️ ขั้นตอนแรก: ดาวน์โหลดและรันไฟล์ด้านล่างนี้เพียงครั้งเดียว")
 
-# ปุ่ม One-Click
-st.link_button("🚀 ONE-CLICK CONNECT", "jvfs-connect://", type="primary", use_container_width=True)
+# ใส่ลิงก์ Raw จาก GitHub ของคุณที่นี่
+github_raw_url = "https://raw.githubusercontent.com/USER_NAME/REPO_NAME/main/setup_vpn.bat"
+
+# ปุ่มดาวน์โหลดไฟล์
+st.link_button("📥 1. ดาวน์โหลดไฟล์ Setup (คลิกขวา Save As)", github_raw_url, use_container_width=True)
+
+st.markdown("""
+<div style="font-size: 0.85rem; color: #888; margin-bottom: 15px;">
+    <i>*หลังจากโหลดแล้ว ให้คลิกขวาที่ไฟล์เลือก <b>'Run as Administrator'</b></i>
+</div>
+""", unsafe_allow_html=True)
+
+# ปุ่ม One-Click Connect
+st.link_button("🚀 2. ONE-CLICK CONNECT", "jvfs-connect://", type="primary", use_container_width=True)
 
 st.caption("เมื่อกดแล้ว โปรแกรม FortiClient จะเด้งขึ้นมาให้ใส่ Password และต่อให้ทันที")
     
