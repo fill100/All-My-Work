@@ -41,7 +41,7 @@ with col1:
 with col2:
     st.link_button("☁️ Wesgan Asset Setting", "https://cloud.wesgan.com/fts/Asset/Setting", use_container_width=True)
     st.link_button("✨ Google Gemini (AI)", "https://gemini.google.com/app", type="primary", use_container_width=True)
-    st.link_button("🖥️ Internal Server (jvfs-srv)", "http://jvfs-srv:8501/", use_container_width=True)
+    st.link_button("🖥️ ระบบบันทึก Log การแก้ไขข้อมูลบัตร", "http://jvfs-srv:8501/", use_container_width=True)
 st.divider()
 
 # --- กลุ่มที่ 2: เอกสาร SharePoint ---
