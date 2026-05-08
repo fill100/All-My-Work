@@ -33,24 +33,39 @@ st.markdown("""
 st.title("📂 JVFS Work Portal")
 st.write("ศูนย์รวมลิงก์ระบบงานและเอกสารสำคัญ")
 
-# --- หมวดหมู่ FortiClient VPN ---
-with st.expander("🔐 FortiClient VPN Access", expanded=True):
-    st.info("กรุณาเชื่อมต่อ VPN ก่อนเข้าใช้งาน Internal Server (jvfs-srv)")
+# --- ส่วน FortiClient VPN (เน้นการตั้งค่าในเครื่อง) ---
+with st.expander("🔐 การเชื่อมต่อ FortiClient VPN", expanded=True):
+    st.warning("เปิดโปรแกรม **FortiClient VPN** ในเครื่องของท่านก่อนใช้งานระบบภายใน")
     
-    col_vpn1, col_vpn2 = st.columns(2)
-    with col_vpn1:
-        # ลิงก์หน้า Portal สำหรับ Login ผ่าน Browser (ถ้าบริษัทเปิดใช้งาน)
-        # ปกติจะเป็น https://<IP-Office-หรือ-Domain>:443
-        st.link_button("🌐 FortiGate Web Portal", "https://vpn.jvfuturesky.com", use_container_width=True)
-        
-    with col_vpn2:
-        # ลิงก์ดาวน์โหลดโดยตรงจากเว็บ Fortinet
-        st.link_button("📥 Download FortiClient", "https://www.fortinet.com/support/product-downloads", use_container_width=True)
+    # แสดงค่าที่ต้องกรอกในโปรแกรม
+    st.markdown("""
+    **ค่าการตั้งค่า (VPN Configuration):**
+    *   **Connection Name:** JVFS VPN
+    *   **Remote Gateway:** `vpn.jvfuturesky.com` (หรือเลข IP ของบริษัท)
+    *   **Port:** `443`
+    """)
 
-    # เพิ่มเติม: ส่วนดาวน์โหลดคู่มือที่เตรียมไว้เองใน SharePoint
-    st.link_button("📖 วิธีติดตั้งและตั้งค่า FortiClient (PDF)", "https://jvfuturesky.sharepoint.com/:b:/s/manual-forticlient", use_container_width=True)
-    
-    st.caption("ตั้งค่า Remote Gateway เป็น: **vpn.jvfuturesky.com** (Port: 443)")
+    # สร้างปุ่มที่พยายามจะเรียกเปิดโปรแกรมในเครื่อง (Deep Link)
+    # หมายเหตุ: อาจไม่ได้ผลในทุก Browser/OS แต่เป็นทางเลือกที่ดี
+    st.link_button("🚀 พยายามเปิดโปรแกรม FortiClient", "forticlient://", use_container_width=True)
+
+    # ปุ่มสำรองสำหรับคู่มือ
+    st.link_button("📖 ดูรูปขั้นตอนการตั้งค่า", "https://jvfuturesky.sharepoint.com/your-manual-link", use_container_width=True)
+
+st.divider()
+
+# --- กลุ่มที่ 1: ระบบงานหลัก (ต้องต่อ VPN ก่อนถึงจะเข้า jvfs-srv ได้) ---
+st.subheader("🛠️ Core Systems")
+col1, col2 = st.columns(2)
+
+with col1:
+    st.link_button("🌐 e-Workpermit OS (Main)", "https://eworkpermitos.doe.go.th/Main", use_container_width=True)
+    st.link_button("📄 e-Workpermit System", "https://eworkpermit.doe.go.th/", use_container_width=True)
+
+with col2:
+    # เน้นย้ำปุ่มนี้ว่าต้องต่อ VPN
+    st.link_button("🖥️ Internal Server (jvfs-srv)", "http://jvfs-srv:8501/", type="primary", use_container_width=True)
+    st.caption("👈 ต้องต่อ VPN ก่อนถึงจะเข้าลิงก์นี้ได้")
 st.divider()
 
 # --- กลุ่มที่ 1: ระบบงานหลัก ---
