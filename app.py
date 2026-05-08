@@ -36,11 +36,12 @@ col1, col2 = st.columns(2)
 with col1:
     st.link_button("🌐 e-Workpermit OS (Main)", "https://eworkpermitos.doe.go.th/Main", use_container_width=True)
     st.link_button("📄 e-Workpermit System", "https://eworkpermit.doe.go.th/", use_container_width=True)
+    st.link_button("💬 LINE Official Account", "https://account.line.biz/login?redirectUri=https%3A%2F%2Fmanager.line.biz%2F", use_container_width=True)
 
 with col2:
     st.link_button("☁️ Wesgan Asset Setting", "https://cloud.wesgan.com/fts/Asset/Setting", use_container_width=True)
     st.link_button("✨ Google Gemini (AI)", "https://gemini.google.com/app", type="primary", use_container_width=True)
-
+    st.link_button("🖥️ Internal Server (jvfs-srv)", "http://jvfs-srv:8501/", use_container_width=True)
 st.divider()
 
 # --- กลุ่มที่ 2: เอกสาร SharePoint ---
