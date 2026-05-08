@@ -40,22 +40,19 @@ import streamlit as st
 with st.expander("🔐 ตั้งค่าเชื่อมต่อ JVFS VPN", expanded=True):
     st.info("กรอกข้อมูลตามด้านล่างนี้ในโปรแกรม FortiClient")
     
-    # ใช้ Columns แสดงค่าที่ต้องการ Fix เพื่อให้ Copy ง่าย
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.code("JVFS VPN", language=None)
-        st.caption("Connection Name")
-    with c2:
-        st.code("119.110.207.194", language=None)
-        st.caption("Remote Gateway")
-    with c3:
-        st.code("20443", language=None)
-        st.caption("Port")
+    # เพิ่มปุ่ม One-Click ใน app.py
+st.subheader("⚡ Quick Connect")
 
-    st.divider()
-    
-    # ปุ่มช่วยเปิดโปรแกรม (ถ้าเครื่องรองรับ)
-    st.link_button("🚀 คลิกเพื่อเปิดโปรแกรม FortiClient ในเครื่อง", "forticlient://", use_container_width=True)
+st.markdown("""
+    <div style="background-color: #fff3cd; padding: 10px; border-radius: 5px;">
+        ⚠️ <b>ครั้งแรก:</b> ต้องรันไฟล์ setup_vpn.bat ในเครื่องก่อน
+    </div>
+""", unsafe_allow_html=True)
+
+# ปุ่ม One-Click ของจริง
+st.link_button("🚀 ONE-CLICK CONNECT", "jvfs-connect://", type="primary", use_container_width=True)
+
+st.caption("เมื่อกดแล้ว โปรแกรม FortiClient จะเด้งขึ้นมาให้ใส่ Password และต่อให้ทันที")
     
 st.divider()
 
