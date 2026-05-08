@@ -46,10 +46,10 @@ with st.expander("🔐 ตั้งค่าเชื่อมต่อ JVFS VPN
         st.code("JVFS VPN", language=None)
         st.caption("Connection Name")
     with c2:
-        st.code("vpn.jvfuturesky.com", language=None)
+        st.code("119.110.207.194", language=None)
         st.caption("Remote Gateway")
     with c3:
-        st.code("443", language=None)
+        st.code("20443", language=None)
         st.caption("Port")
 
     st.divider()
@@ -57,9 +57,6 @@ with st.expander("🔐 ตั้งค่าเชื่อมต่อ JVFS VPN
     # ปุ่มช่วยเปิดโปรแกรม (ถ้าเครื่องรองรับ)
     st.link_button("🚀 คลิกเพื่อเปิดโปรแกรม FortiClient ในเครื่อง", "forticlient://", use_container_width=True)
     
-    # ลิงก์ดาวน์โหลดไฟล์ Config (ถ้าคุณทำไฟล์สำรองไว้)
-    st.link_button("📥 ดาวน์โหลดไฟล์ตั้งค่าอัตโนมัติ (.conf)", "https://your-github-link/config.conf", use_container_width=True)
-
 st.divider()
 st.divider()
 
