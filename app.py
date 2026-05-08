@@ -1,13 +1,13 @@
 import streamlit as st
 
-# 1. การตั้งค่าหน้าเว็บ (ต้องเป็นคำสั่งแรกของ Streamlit)
+# 1. การตั้งค่าหน้าเว็บ
 st.set_page_config(
     page_title="JVFS Work Portal", 
     page_icon="📂", 
     layout="centered"
 )
 
-# 2. ปรับแต่งสไตล์ด้วย CSS (จัดรูปแบบใหม่ให้ป้องกันการ Error)
+# 2. ปรับแต่งสไตล์ด้วย CSS
 st.markdown("""
 <style>
     .stButton>button {
@@ -20,12 +20,29 @@ st.markdown("""
         color: #007bff;
         transform: scale(1.02);
     }
+    .vpn-section {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        border-left: 5px solid #ff4b4b;
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # 3. ส่วนเนื้อหา
 st.title("📂 JVFS Work Portal")
 st.write("ศูนย์รวมลิงก์ระบบงานและเอกสารสำคัญ")
+
+# --- หมวดหมู่ใหม่: VPN & Remote Access ---
+with st.expander("🔐 VPN & Remote Access (คลิกเพื่อดูช่องทางเชื่อมต่อ)", expanded=True):
+    col_vpn1, col_vpn2 = st.columns(2)
+    with col_vpn1:
+        # ใส่ URL สำหรับหน้า Web VPN หรือหน้าดาวน์โหลดของบริษัทคุณ
+        st.link_button("🌐 Connect Web VPN", "https://your-vpn-link.com", use_container_width=True)
+    with col_vpn2:
+        # ใส่ลิงก์คู่มือการต่อ VPN
+        st.link_button("📖 คู่มือการติดตั้ง VPN", "https://your-manual-link.com", use_container_width=True)
+    st.caption("⚠️ โปรดเชื่อมต่อ VPN ก่อนเข้าใช้งานระบบ Internal Server")
 
 st.divider()
 
