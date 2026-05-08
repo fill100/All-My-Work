@@ -33,17 +33,24 @@ st.markdown("""
 st.title("📂 JVFS Work Portal")
 st.write("ศูนย์รวมลิงก์ระบบงานและเอกสารสำคัญ")
 
-# --- หมวดหมู่ใหม่: VPN & Remote Access ---
-with st.expander("🔐 VPN & Remote Access (คลิกเพื่อดูช่องทางเชื่อมต่อ)", expanded=True):
+# --- หมวดหมู่ FortiClient VPN ---
+with st.expander("🔐 FortiClient VPN Access", expanded=True):
+    st.info("กรุณาเชื่อมต่อ VPN ก่อนเข้าใช้งาน Internal Server (jvfs-srv)")
+    
     col_vpn1, col_vpn2 = st.columns(2)
     with col_vpn1:
-        # ใส่ URL สำหรับหน้า Web VPN หรือหน้าดาวน์โหลดของบริษัทคุณ
-        st.link_button("🌐 Connect Web VPN", "https://your-vpn-link.com", use_container_width=True)
+        # ลิงก์หน้า Portal สำหรับ Login ผ่าน Browser (ถ้าบริษัทเปิดใช้งาน)
+        # ปกติจะเป็น https://<IP-Office-หรือ-Domain>:443
+        st.link_button("🌐 FortiGate Web Portal", "https://vpn.jvfuturesky.com", use_container_width=True)
+        
     with col_vpn2:
-        # ใส่ลิงก์คู่มือการต่อ VPN
-        st.link_button("📖 คู่มือการติดตั้ง VPN", "https://your-manual-link.com", use_container_width=True)
-    st.caption("⚠️ โปรดเชื่อมต่อ VPN ก่อนเข้าใช้งานระบบ Internal Server")
+        # ลิงก์ดาวน์โหลดโดยตรงจากเว็บ Fortinet
+        st.link_button("📥 Download FortiClient", "https://www.fortinet.com/support/product-downloads", use_container_width=True)
 
+    # เพิ่มเติม: ส่วนดาวน์โหลดคู่มือที่เตรียมไว้เองใน SharePoint
+    st.link_button("📖 วิธีติดตั้งและตั้งค่า FortiClient (PDF)", "https://jvfuturesky.sharepoint.com/:b:/s/manual-forticlient", use_container_width=True)
+    
+    st.caption("ตั้งค่า Remote Gateway เป็น: **vpn.jvfuturesky.com** (Port: 443)")
 st.divider()
 
 # --- กลุ่มที่ 1: ระบบงานหลัก ---
