@@ -5,7 +5,6 @@ chcp 65001 >nul
 if '%errorlevel%' NEQ '0' ( goto UACPrompt ) else ( goto gotAdmin )
 
 :UACPrompt
-    echo Requesting Admin...
     echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
     echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
     "%temp%\getadmin.vbs"
@@ -16,33 +15,42 @@ if '%errorlevel%' NEQ '0' ( goto UACPrompt ) else ( goto gotAdmin )
     pushd "%CD%"
     CD /D "%~dp0"
 
-:: 2. แก้ปัญหา Windows ไม่รู้จักไฟล์ .vpl (บังคับให้ใช้ FortiClient เปิด)
-assoc .vpl=FortiClient.VPL
-ftype FortiClient.VPL="C:\Program Files\Fortinet\FortiClient\FortiClient.exe" "%%1"
+:: 2. ปิดโปรแกรมที่ค้างอยู่
+taskkill /f /im FortiClient.exe >nul 2>&1
 
-:: 3. สร้างโฟลเดอร์และไฟล์ Config
+:: 3. สร้างไฟล์ config แบบ XML ที่ FortiClient 7.2 อ่านออก
+set CONFIG_DIR=%AppData%\Fortinet\FortiClient\config
+if not exist "%CONFIG_DIR%" mkdir "%CONFIG_DIR%"
+
+set XML_FILE=%CONFIG_DIR%\vpn_profiles.xml
+
+echo ^<vpn_profiles^> > "%XML_FILE%"
+echo   ^<profile^> >> "%XML_FILE%"
+echo     ^<name^>JVFS_VPN^</name^> >> "%XML_FILE%"
+echo     ^<type^>ssl^</type^> >> "%XML_FILE%"
+echo     ^<server^>119.110.207.194:20443^</server^> >> "%XML_FILE%"
+echo     ^<allow_invalid_server_cert^>1^</allow_invalid_server_cert^> >> "%XML_FILE%"
+echo   ^</profile^> >> "%XML_FILE%"
+echo ^</vpn_profiles^> >> "%XML_FILE%"
+
+:: 4. สร้างตัวเรียกโปรแกรม (Protocol)
 if not exist "C:\JVFS-IT" mkdir "C:\JVFS-IT"
-set CONF_FILE=C:\JVFS-IT\jvfs_setup.vpl
+echo @echo off > "C:\JVFS-IT\connect_vpn.bat"
+echo start "" "C:\Program Files\Fortinet\FortiClient\FortiClient.exe" >> "C:\JVFS-IT\connect_vpn.bat"
 
-echo [VPN_PROFILE]> %CONF_FILE%
-echo name=JVFS_VPN>> %CONF_FILE%
-echo server=119.110.207.194:20443>> %CONF_FILE%
-echo type=sslvpn>> %CONF_FILE%
-
-:: 4. สั่งเปิดไฟล์ Config (รอบนี้ต้องไม่เด้งถามแบบเดิมแล้ว)
-start "" "%CONF_FILE%"
-
-:: 5. ตั้งค่า Protocol สำหรับเรียกจากหน้าเว็บ
 reg add "HKCR\jvfs-connect" /ve /t REG_SZ /d "URL:JVFS VPN" /f
 reg add "HKCR\jvfs-connect" /v "URL Protocol" /t REG_SZ /d "" /f
-reg add "HKCR\jvfs-connect\shell\open\command" /ve /t REG_SZ /d "\"C:\Program Files\Fortinet\FortiClient\FortiClient.exe\"" /f
+reg add "HKCR\jvfs-connect\shell\open\command" /ve /t REG_SZ /d "\"C:\JVFS-IT\connect_vpn.bat\"" /f
+
+:: 5. เปิดโปรแกรมขึ้นมาใหม่
+start "" "C:\Program Files\Fortinet\FortiClient\FortiClient.exe"
 
 cls
 echo ========================================
-echo        [ แก้ไขการเชื่อมโยงไฟล์แล้ว ]
+echo        [ บังคับตั้งค่าสำเร็จแล้ว! ]
 echo ========================================
-echo 1. หน้าจอ "How do you want to open this file?" จะไม่ขึ้นแล้ว
-echo 2. จะมีหน้าต่าง FortiClient เด้งมาให้กด "Yes" เพื่อยืนยันการตั้งค่า
-echo 3. ถ้ากด Yes แล้ว ชื่อ JVFS_VPN จะโผล่ในโปรแกรมทันทีครับ
+echo - ระบบได้ยัดไฟล์ Config เข้าไปในเครื่องแล้ว
+echo - ตอนนี้หน้าจอ FortiClient ควรจะเปลี่ยนจาก 
+echo   "Configure VPN" เป็นหน้าใส่ Username แล้วครับ
 echo ========================================
 pause
