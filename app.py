@@ -33,39 +33,34 @@ st.markdown("""
 st.title("📂 JVFS Work Portal")
 st.write("ศูนย์รวมลิงก์ระบบงานและเอกสารสำคัญ")
 
-# --- ส่วน FortiClient VPN (เน้นการตั้งค่าในเครื่อง) ---
-with st.expander("🔐 การเชื่อมต่อ FortiClient VPN", expanded=True):
-    st.warning("เปิดโปรแกรม **FortiClient VPN** ในเครื่องของท่านก่อนใช้งานระบบภายใน")
+import streamlit as st
+
+# ... (ส่วนหัวข้อและ CSS) ...
+
+with st.expander("🔐 ตั้งค่าเชื่อมต่อ JVFS VPN", expanded=True):
+    st.info("กรอกข้อมูลตามด้านล่างนี้ในโปรแกรม FortiClient")
     
-    # แสดงค่าที่ต้องกรอกในโปรแกรม
-    st.markdown("""
-    **ค่าการตั้งค่า (VPN Configuration):**
-    *   **Connection Name:** JVFS VPN
-    *   **Remote Gateway:** `vpn.jvfuturesky.com` (หรือเลข IP ของบริษัท)
-    *   **Port:** `443`
-    """)
+    # ใช้ Columns แสดงค่าที่ต้องการ Fix เพื่อให้ Copy ง่าย
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.code("JVFS VPN", language=None)
+        st.caption("Connection Name")
+    with c2:
+        st.code("vpn.jvfuturesky.com", language=None)
+        st.caption("Remote Gateway")
+    with c3:
+        st.code("443", language=None)
+        st.caption("Port")
 
-    # สร้างปุ่มที่พยายามจะเรียกเปิดโปรแกรมในเครื่อง (Deep Link)
-    # หมายเหตุ: อาจไม่ได้ผลในทุก Browser/OS แต่เป็นทางเลือกที่ดี
-    st.link_button("🚀 พยายามเปิดโปรแกรม FortiClient", "forticlient://", use_container_width=True)
-
-    # ปุ่มสำรองสำหรับคู่มือ
-    st.link_button("📖 ดูรูปขั้นตอนการตั้งค่า", "https://jvfuturesky.sharepoint.com/your-manual-link", use_container_width=True)
+    st.divider()
+    
+    # ปุ่มช่วยเปิดโปรแกรม (ถ้าเครื่องรองรับ)
+    st.link_button("🚀 คลิกเพื่อเปิดโปรแกรม FortiClient ในเครื่อง", "forticlient://", use_container_width=True)
+    
+    # ลิงก์ดาวน์โหลดไฟล์ Config (ถ้าคุณทำไฟล์สำรองไว้)
+    st.link_button("📥 ดาวน์โหลดไฟล์ตั้งค่าอัตโนมัติ (.conf)", "https://your-github-link/config.conf", use_container_width=True)
 
 st.divider()
-
-# --- กลุ่มที่ 1: ระบบงานหลัก (ต้องต่อ VPN ก่อนถึงจะเข้า jvfs-srv ได้) ---
-st.subheader("🛠️ Core Systems")
-col1, col2 = st.columns(2)
-
-with col1:
-    st.link_button("🌐 e-Workpermit OS (Main)", "https://eworkpermitos.doe.go.th/Main", use_container_width=True)
-    st.link_button("📄 e-Workpermit System", "https://eworkpermit.doe.go.th/", use_container_width=True)
-
-with col2:
-    # เน้นย้ำปุ่มนี้ว่าต้องต่อ VPN
-    st.link_button("🖥️ Internal Server (jvfs-srv)", "http://jvfs-srv:8501/", type="primary", use_container_width=True)
-    st.caption("👈 ต้องต่อ VPN ก่อนถึงจะเข้าลิงก์นี้ได้")
 st.divider()
 
 # --- กลุ่มที่ 1: ระบบงานหลัก ---
