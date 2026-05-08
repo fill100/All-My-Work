@@ -58,7 +58,6 @@ with st.expander("🔐 ตั้งค่าเชื่อมต่อ JVFS VPN
     st.link_button("🚀 คลิกเพื่อเปิดโปรแกรม FortiClient ในเครื่อง", "forticlient://", use_container_width=True)
     
 st.divider()
-st.divider()
 
 # --- กลุ่มที่ 1: ระบบงานหลัก ---
 st.subheader("🛠️ Core Systems")
