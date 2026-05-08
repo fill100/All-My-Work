@@ -39,12 +39,38 @@ import streamlit as st
 st.subheader("⚡ JVFS VPN Quick Connect")
 
 st.markdown("""
-    <div style="background-color: #fff3cd; padding: 10px; border-radius: 5px;">
-        ⚠️ <b>ครั้งแรก:</b> ต้องรันไฟล์ setup_vpn.bat ในเครื่องก่อน
-    </div>
+<style>
+    /* ปรับปุ่มทั่วไป */
+    .stButton>button {
+        border-radius: 10px;
+        height: 3em;
+        transition: all 0.3s;
+    }
+    
+    /* แก้ไขสีตัวอักษรใน Warning/Info Box ให้เป็นสีดำเพื่อให้มองเห็นชัดบนพื้นหลังเหลือง */
+    .stAlert p {
+        color: #111111 !important;
+        font-weight: 500;
+    }
+
+    /* ตกแต่งส่วน Quick Connect ให้เด่น */
+    .quick-connect-box {
+        background-color: #262730;
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid #464b5d;
+        margin-bottom: 20px;
+    }
+</style>
 """, unsafe_allow_html=True)
 
-# ปุ่ม One-Click ของจริง
+# ส่วนเนื้อหา Quick Connect
+st.subheader("⚡ Quick Connect")
+
+# ใช้ st.warning ที่แก้สีตัวอักษรแล้ว
+st.warning("⚠️ ครั้งแรก: ต้องรันไฟล์ setup_vpn.bat ในเครื่องก่อน")
+
+# ปุ่ม One-Click
 st.link_button("🚀 ONE-CLICK CONNECT", "jvfs-connect://", type="primary", use_container_width=True)
 
 st.caption("เมื่อกดแล้ว โปรแกรม FortiClient จะเด้งขึ้นมาให้ใส่ Password และต่อให้ทันที")
