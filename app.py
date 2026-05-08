@@ -63,10 +63,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
-# ส่วนเนื้อหา Quick Connect
-st.subheader("⚡ Quick Connect")
-
 # ใช้ st.warning ที่แก้สีตัวอักษรแล้ว
 st.warning("⚠️ ครั้งแรก: ต้องรันไฟล์ setup_vpn.bat ในเครื่องก่อน")
 
